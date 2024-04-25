@@ -1,5 +1,6 @@
 第一道题：Maximum Depth of Binary Tree (104)
 Key Point: recursion
+Language: 
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, val=0, left=None, right=None):

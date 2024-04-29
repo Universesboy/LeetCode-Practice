@@ -1,0 +1,16 @@
+第四道：1. Two Sum
+  Solve method: hashmap
+    class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+       nums_map ={} #val : index 
+
+       for i, n in enumerate (nums):
+        diff = target - n
+        if diff in nums_map:
+            return [nums_map[diff],i] # Return the indices of the elements that sum to target
+        nums_map [n] = i # Store index of the current number
+       return[] 
+         
+What I ‘ve learned:
+
+What Does **Enumerate** Do in Python? Enumerate is a built-in function in python that **allows you to keep track of the number of iterations (loops) in a loop**.

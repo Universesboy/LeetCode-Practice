@@ -1,0 +1,96 @@
+Solving Method: Quick Select, Quick Sort, sort, min heap, max heap 
+
+Key points: priority queue, min heap
+
+Quick Select
+
+code:
+
+1. sort method
+
+```python
+nums.sort()
+        return nums [len (nums)-k]
+```
+
+1. quick select 
+
+```python
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        if k == 50000: return 1
+        k = len(nums) - k # target index
+        def quickSelect(l, r):
+            pivot, p = nums[r], l  # Use the last element as the pivot
+            for i in range(l, r):
+                if nums[i] <= pivot:
+                    nums[p], nums[i] = nums[i], nums[p]
+                    p += 1
+            nums[r], nums[p] = nums[p], nums[r]  # Place pivot in its correct position
+            
+            if p > k:  # Target index is on the left part
+                return quickSelect(l, p - 1)
+            elif p < k:  # Target index is on the right part
+                return quickSelect(p + 1, r)
+            else:  # Found the target index
+                return nums[p]
+        
+        return quickSelect(0, len(nums) - 1)
+```
+
+1. Min heap
+
+```python
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        heap = []
+        for num in nums:
+            if len(heap) < k:
+                heapq.heappush(heap, num)
+            else:
+                if num > heap[0]:
+                    heapq.heappop(heap)
+                    heapq.heappush(heap, num)
+        return heap[0]
+```
+
+what I’ve learned from this question:
+
+### **Min Heap**
+
+- **Definition:** A min heap is a binary tree where the parent node is always less than or equal to its children.
+- **Key Property:** The smallest element is always at the root of the tree.
+- **Example:**
+    
+    ```markdown
+    markdownCopy code
+        1
+       / \
+      3   2
+     / \
+    5   4
+    
+    ```
+    
+
+### **Max Heap**
+
+- **Definition:** A max heap is a binary tree where the parent node is always greater than or equal to its children.
+- **Key Property:** The largest element is always at the root of the tree.
+- **Example:**
+    
+    ```markdown
+    markdownCopy code
+        9
+       / \
+      5   8
+     / \
+    2   4
+    
+    ```
+    
+
+### **Summary**
+
+- **Min Heap:** Root is the smallest element.
+- **Max Heap:** Root is the largest element.

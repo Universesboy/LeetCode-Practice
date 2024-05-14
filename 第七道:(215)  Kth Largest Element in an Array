@@ -13,7 +13,7 @@ nums.sort()
         return nums [len (nums)-k]
 ```
 
-1. quick select 
+2. quick select 
 
 ```python
 class Solution:
@@ -38,7 +38,7 @@ class Solution:
         return quickSelect(0, len(nums) - 1)
 ```
 
-1. Min heap
+3. Min heap
 
 ```python
 class Solution:

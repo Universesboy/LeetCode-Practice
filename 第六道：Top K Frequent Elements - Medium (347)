@@ -1,0 +1,32 @@
+Method: bucket sort, hashmap
+
+```python
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = {} #store value and index
+        freq = [[]for i in range (len(nums)+1)] 
+"""creates a list (freq) that has len(nums) + 1 empty lists. 
+For example, if nums has 3 elements, freq will end up being 
+[[], [], [], []] — a list of 4 empty lists."""
+        for n in nums:
+            count [n] = 1 + count.get(n,0) 
+""" For instance, if nums contains [1, 2, 2, 3], after 
+executing this code, count will be {1: 1, 2: 2, 3: 1}, 
+indicating that 1 appears once, 2 appears twice, and 3 
+appears once in the list."""
+        for n, c in count.items():
+            freq[c].append(n)
+        res = []
+        for i in range (len(freq)-1,0,-1):
+            for n in freq[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
+```
+
+what I ‘ve learned: 
+
+- Max heap
+- bucket sort
+- AVL tree
+    - link: https://www.geeksforgeeks.org/introduction-to-avl-tree/

@@ -43,16 +43,60 @@ class Solution:
 ```python
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        heap = []
-        for num in nums:
-            if len(heap) < k:
-                heapq.heappush(heap, num)
+        heap = [] #min-heap
+        for i in nums:
+            if len(heap) < k: #if current size of heap is less than k, it adds to the heap and maintains the min-heap property
+                heapq.heappush(heap, i)
             else:
-                if num > heap[0]:
-                    heapq.heappop(heap)
-                    heapq.heappush(heap, num)
+                if i > heap[0]:
+                    heapq.heappop(heap) #pop() = removes 
+                    heapq.heappush(heap, i) #push() = adds
         return heap[0]
 ```
+Example: 
+
+input **`nums = [3, 2, 1, 5, 6, 4]`** and **`k = 2`**
+
+### **Step-by-Step Execution:**
+
+1. **Initial State:**
+    - **`nums = [3, 2, 1, 5, 6, 4]`**
+    - **`k = 2`**
+    - **`heap = []`**
+2. **Iteration 1:**
+    - Current **`num = 3`**
+    - **`heap`** size is less than **`k`** (2), so we add **`3`** to the heap.
+    - **`heap = [3]`**
+3. **Iteration 2:**
+    - Current **`num = 2`**
+    - **`heap`** size is less than **`k`**, so we add **`2`** to the heap.
+    - **`heap = [2, 3]`**
+    - Note: The heap is a min-heap, so the smallest element is at the root.
+4. **Iteration 3:**
+    - Current **`num = 1`**
+    - **`heap`** size is equal to **`k`**, so we compare **`1`** with the smallest element in the heap (**`2`**).
+    - **`1`** is not greater than **`2`**, so we do nothing.
+    - **`heap = [2, 3]`**
+5. **Iteration 4:**
+    - Current **`num = 5`**
+    - **`heap`** size is equal to **`k`**, so we compare **`5`** with the smallest element in the heap (**`2`**).
+    - **`5`** is greater than **`2`**, so we remove **`2`** and add **`5`** to the heap.
+    - **`heap = [3, 5]`**
+6. **Iteration 5:**
+    - Current **`num = 6`**
+    - **`heap`** size is equal to **`k`**, so we compare **`6`** with the smallest element in the heap (**`3`**).
+    - **`6`** is greater than **`3`**, so we remove **`3`** and add **`6`** to the heap.
+    - **`heap = [5, 6]`**
+7. **Iteration 6:**
+    - Current **`num = 4`**
+    - **`heap`** size is equal to **`k`**, so we compare **`4`** with the smallest element in the heap (**`5`**).
+    - **`4`** is not greater than **`5`**, so we do nothing.
+    - **`heap = [5, 6]`**
+
+### **Final State:**
+
+- **`heap = [5, 6]`**
+- The smallest element in the heap (**`heap[0]`**) is **`5`**.
 
 what I’ve learned from this question:
 
